@@ -64,7 +64,7 @@ public class Database {
      * @throws IOException
      */
     public void load(String filename) throws IOException {
-        filename = filename.equals("0") ? "db.txt" : filename;
+        filename = filename.equals(null) ? "db.txt" : filename;
         triangles.clear();
         Scanner scanner = new Scanner(new FileInputStream(PATH + filename));
         double s1 = -1, s2 = -1, s3 = -1;
