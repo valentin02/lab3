@@ -1,12 +1,14 @@
 package ua.politeh;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class FuncUtils {
 
     /**
-     *  Gets number from line
+     * Gets number from line
+     *
      * @return double number
      */
     static double checkNum() {
@@ -42,6 +44,7 @@ public class FuncUtils {
 
     /**
      * Add new Triangle to list
+     *
      * @param db base of data
      */
     static void addTriangle(Database db) {
@@ -58,6 +61,7 @@ public class FuncUtils {
 
     /**
      * Return name of file to method for open this file
+     *
      * @param temp Array of names files in folder "files"
      * @return name of file
      */
@@ -67,7 +71,7 @@ public class FuncUtils {
         }
         System.out.println("Enter number from the list");
         int _i = ((int) checkNum() - 1);
-        if (_i > 0 && _i < temp.length)
+        if (_i > 0 && _i < temp.length )
             return temp[_i];
         else
             return temp[0];
@@ -75,6 +79,7 @@ public class FuncUtils {
 
     /**
      * Method for add 5 triangles to base of data
+     *
      * @param db base of data
      */
     static void makeDb(Database db) {
@@ -85,16 +90,8 @@ public class FuncUtils {
         db.addTriangle(6, 7, 15);
     }
 
-    static void menu(Database db) throws IOException {
-        String s1 = "Hello, " +
-                "enter number from the list\n" +
-                "\n1 Open the file\n" +
-                "2 Open backup files\n" +
-                "3 Use prepared data\n" +
-                "4 Input data\n" +
-                "0 Exit";
-        System.out.println(s1);
-        switch ((int) checkNum()) {
+    static void menu2(Database db, int index) throws IOException {
+        switch (index) {
             case 1:
                 db.load("db.txt");
                 System.out.println(db.toString());
@@ -111,9 +108,24 @@ public class FuncUtils {
                 FuncUtils.addTriangle(db);
                 System.out.println(db.toString());
                 break;
-            case 0:
-                return;
         }
+
+    }
+
+
+    static void menu(Database db) throws IOException {
+        String s1 = "Hello, " +
+                "enter number from the list\n" +
+                "\n1 Open the file\n" +
+                "2 Open backup files\n" +
+                "3 Use prepared data\n" +
+                "4 Input data\n" +
+                "0 Exit";
+        System.out.println(s1);
+        int index = (int)checkNum();
+        if (index==0){return;}
+        menu2(db, index);
+
         while (true) {
             s1 = "Hello, " +
                     "enter number from the list\n" +
@@ -123,36 +135,22 @@ public class FuncUtils {
                     "4 Input data\n" +
                     "5 Save data in the file\n" +
                     "0 Exit";
-            while (true) {
                 System.out.println(s1);
-                switch ((int) checkNum()) {
-                    case 1:
-                        db.load("db.txt");
-                        System.out.println(db.toString());
-                        break;
-                    case 2:
-                        db.load(FuncUtils.openBackUpFile(db.listFilesUsingJavaIO()));
-                        System.out.println(db.toString());
-                        break;
-                    case 3:
-                        FuncUtils.makeDb(db);
-                        System.out.println(db.toString());
-                        break;
-                    case 4:
-                        System.out.println(db.toString());
-                        FuncUtils.addTriangle(db);
-                        break;
-                    case 5:
-                        System.out.println(db.toString());
-                        db.save("db.txt");
-                        System.out.println("Data have written");
-                    case 0:
-                        return;
+                index = (int)checkNum();
+            if (index==0){return;}
+            if (index != 5)
+                {
+                    menu2(db,index);
+                } if(index == 5) {
+                System.out.println(db.toString());
+                db.save("db.txt");
+                System.out.println("Data have written");
                 }
             }
-        }
     }
-}
+
+    }
+
 
 
 

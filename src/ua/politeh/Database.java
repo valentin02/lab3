@@ -9,18 +9,19 @@ import java.util.Scanner;
 
 public class Database {
 
-    final String PATH = "//home//valik//IdeaProjects//lab3//src//ua//politeh//files//";
+    public final String PATH = "//home//valik//IdeaProjects//lab3//src//ua//politeh//files//";
 
     private ArrayList<Triangle> triangles = new ArrayList<>();
 
     /**
      * This method add new triangle to list
+     *
      * @param side1 side1
      * @param side2 side2
      * @param side3 side3
      */
     public void addTriangle(double side1, double side2, double side3) {
-        this.triangles.add(new Triangle(side1, side2, side3)) ;
+        this.triangles.add(new Triangle(side1, side2, side3));
     }
 
     @Override
@@ -34,6 +35,7 @@ public class Database {
 
     /**
      * This method save data in file
+     *
      * @param filename name of file
      * @throws IOException
      */
@@ -53,11 +55,11 @@ public class Database {
         bw.write(b, 0, b.length);
         bw.close();
         outStream.close();
-        copyFileUsingChannel(new File(PATH + "db.txt"));
     }
 
     /**
      * This method read data from the file
+     *
      * @param filename name of file
      * @throws IOException
      */
@@ -80,10 +82,11 @@ public class Database {
 
     /**
      * This method make backup document of main document "db.txt"
+     *
      * @param filename name of file
      * @throws IOException
      */
-    private void copyFileUsingChannel(File filename) throws IOException {
+    public void copyFileUsingChannel(File filename) throws IOException {
         FileChannel sourceChannel = null;
         FileChannel destChannel = null;
         File dest = new File(this.nameFile());
@@ -99,6 +102,7 @@ public class Database {
 
     /**
      * this method output list names of document
+     *
      * @return Array of names of document
      */
     public String[] listFilesUsingJavaIO() {
@@ -108,6 +112,7 @@ public class Database {
 
     /**
      * This method return name of document which will be backup
+     *
      * @return name of document
      */
     public String nameFile() {
