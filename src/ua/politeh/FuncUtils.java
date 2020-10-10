@@ -74,7 +74,7 @@ public class FuncUtils {
         if (_i > 0 && _i < temp.length )
             return temp[_i];
         else
-            return temp[0];
+            return "0";
     }
 
     /**

@@ -64,6 +64,7 @@ public class Database {
      * @throws IOException
      */
     public void load(String filename) throws IOException {
+        filename = filename.equals("0") ? "db.txt" : filename;
         triangles.clear();
         Scanner scanner = new Scanner(new FileInputStream(PATH + filename));
         double s1 = -1, s2 = -1, s3 = -1;
@@ -94,7 +95,11 @@ public class Database {
             sourceChannel = new FileInputStream(filename).getChannel();
             destChannel = new FileOutputStream(dest).getChannel();
             destChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
-        } finally {
+        } catch (Exception exception)
+        {
+
+        }
+        finally {
             sourceChannel.close();
             destChannel.close();
         }
