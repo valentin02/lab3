@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Database {
 
-    public final String PATH = "//home//valik//IdeaProjects//lab3//src//ua//politeh//files//";
+    public final String PATH = "./src/ua/politeh/files/";
 
     private ArrayList<Triangle> triangles = new ArrayList<>();
 
